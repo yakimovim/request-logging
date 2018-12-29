@@ -1,0 +1,10 @@
+﻿[
+  {
+    "logLevel": "Debug",
+    "checkerCode": "context.Request.Path.Value == \"/api/values/1\""
+  },
+  {
+    "logLevel": "Debug",
+    "checkerCode": "context.Request.Path.Value == \"/api/values/3\""
+  }
+]
