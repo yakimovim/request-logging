@@ -9,7 +9,7 @@ namespace RequestLogging.Logging
 {
     public static class LogSupport
     {
-        internal static IReadOnlyList<LogLevelSetter> LogLevelSetters = new LogLevelSetter[0];
+        internal static IReadOnlyList<LogLevelRule> LogLevelSetters = new LogLevelRule[0];
 
         public static readonly AsyncLocal<string> LogNamePrefix = new AsyncLocal<string>();
 
@@ -31,7 +31,7 @@ namespace RequestLogging.Logging
             return LogManager.GetLogger(typeof(LogSupport).Assembly, name);
         }
 
-        public static async Task<string> GetLogPrefix(HttpContext context)
+        public static async Task<string> GetLogNamePrefix(HttpContext context)
         {
             var globals = new Globals
             {
@@ -42,7 +42,7 @@ namespace RequestLogging.Logging
 
             foreach (var logLevelSetter in LogLevelSetters)
             {
-                if (await logLevelSetter.Checker(globals))
+                if (await logLevelSetter.Rule(globals))
                 {
                     result = $"EdlinSoftware.Log.{logLevelSetter.LogLevel}";
                     break;

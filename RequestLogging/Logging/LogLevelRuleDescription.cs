@@ -1,8 +1,8 @@
 ﻿namespace RequestLogging.Logging
 {
-    public class RequestChecker
+    public class LogLevelRuleDescription
     {
         public string LogLevel { get; set; }
-        public string CheckerCode { get; set; }
+        public string RuleCode { get; set; }
     }
 }

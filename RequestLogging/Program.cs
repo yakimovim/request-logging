@@ -12,8 +12,8 @@ namespace RequestLogging
     {
         public static void Main(string[] args)
         {
-            LogSupport.LogLevelSetters = new RequestCheckerCompiler().Compile(
-                new RequestCheckerFileReader().ReadFile("RequestCheckers.json")
+            LogSupport.LogLevelSetters = new LogLevelRulesCompiler().Compile(
+                new LogLevelRulesFileReader().ReadFile("LogLevelRules.json")
             );
 
             var watcher = new FileSystemWatcher
@@ -24,8 +24,8 @@ namespace RequestLogging
             };
             watcher.Changed += (sender, eventArgs) =>
             {
-                LogSupport.LogLevelSetters = new RequestCheckerCompiler().Compile(
-                    new RequestCheckerFileReader().ReadFile("RequestCheckers.json")
+                LogSupport.LogLevelSetters = new LogLevelRulesCompiler().Compile(
+                    new LogLevelRulesFileReader().ReadFile("LogLevelRules.json")
                 );
             };
             watcher.EnableRaisingEvents = true;

@@ -40,7 +40,7 @@ namespace RequestLogging
             {
                 try
                 {
-                    LogSupport.LogNamePrefix.Value = await LogSupport.GetLogPrefix(context);
+                    LogSupport.LogNamePrefix.Value = await LogSupport.GetLogNamePrefix(context);
 
                     await next();
                 }

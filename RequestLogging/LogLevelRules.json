@@ -1,0 +1,10 @@
+﻿[
+  {
+    "logLevel": "Debug",
+    "ruleCode": "context.Request.Path.Value == \"/api/values/1\""
+  },
+  {
+    "logLevel": "Debug",
+    "ruleCode": "context.Request.Path.Value == \"/api/values/2\""
+  }
+]
