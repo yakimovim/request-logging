@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Threading;
 using log4net.Config;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -24,6 +25,9 @@ namespace RequestLogging
             };
             watcher.Changed += (sender, eventArgs) =>
             {
+                // Wait while an application modifying the file release lock.
+                Thread.Sleep(1000);
+
                 LogSupport.LogLevelSetters = new LogLevelRulesCompiler().Compile(
                     new LogLevelRulesFileReader().ReadFile("LogLevelRules.json")
                 );
